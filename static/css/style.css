@@ -1,0 +1,278 @@
+:root {
+    --gold: #D4AF37;
+    --gold-dark: #C5A028;
+    --ivory: #FCFBF7;
+    --dark: #1A1A1A;
+    --clay: #E8E4D9;
+    --shadow: rgba(0, 0, 0, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark);
+    background-color: var(--ivory);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .section-title-premium {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+/* Envelope Overlay */
+.envelope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--ivory);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.envelope-overlay.open {
+    transform: translateY(-100%);
+}
+
+.envelope-content {
+    text-align: center;
+    padding: 60px;
+    background: white;
+    box-shadow: 0 20px 50px var(--shadow);
+    border-radius: 20px;
+    max-width: 500px;
+}
+
+.couple-names-opening {
+    font-family: 'Birthstone', cursive;
+    font-size: 4rem;
+    margin: 10px 0;
+    color: var(--gold);
+}
+
+.recipient-box {
+    margin: 30px 0;
+}
+
+.recipient-box h2 {
+    font-size: 1.8rem;
+    margin-top: 10px;
+}
+
+.btn-open {
+    padding: 15px 40px;
+    font-size: 1rem;
+    background: var(--gold);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.btn-open:hover {
+    background: var(--gold-dark);
+}
+
+/* Music Control */
+.music-control {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.music-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    color: var(--gold);
+}
+
+.rotate {
+    animation: rotation 3s infinite linear;
+}
+
+@keyframes rotation {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(359deg); }
+}
+
+/* Hero Premium */
+.hero-premium {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.1);
+    transition: transform 10s ease;
+}
+
+.invitation-main:not(.hidden) .hero-bg {
+    transform: scale(1);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5));
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.couple-names-hero {
+    font-size: 5rem;
+    margin: 20px 0;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.wedding-date-header {
+    letter-spacing: 5px;
+    font-weight: 300;
+}
+
+/* Section Styling */
+.section-title-premium {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    color: var(--gold-dark);
+}
+
+.event-card-premium {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.btn-outline {
+    padding: 10px 25px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    border-radius: 50px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: var(--gold);
+    color: white;
+}
+
+/* Guestbook Luxury */
+.guestbook-container {
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px var(--shadow);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.msg-box-luxury {
+    height: 400px;
+    overflow-y: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #fafaf8;
+}
+
+.input-luxury {
+    padding: 15px 25px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    flex: 1;
+    outline: none;
+    font-family: inherit;
+}
+
+.btn-luxury, .btn-submit-premium {
+    padding: 15px 30px;
+    background: var(--gold);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.btn-send {
+    background: var(--gold);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+/* Animations & Hide classes */
+.hidden { display: none !important; }
+
+@media (max-width: 768px) {
+    .events-grid { grid-template-columns: 1fr; }
+    .couple-names-hero { font-size: 3.5rem; }
+}
+
+.floral-decor { opacity: 0.5; width: 150px; margin: 20px auto; }
+.bottom { transform: rotate(180deg); }

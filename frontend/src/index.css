@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased scroll-smooth transition-colors duration-500 overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .btn-luxury {
+    @apply relative overflow-hidden px-12 py-5 bg-[#D4AF37] text-white rounded-full font-bold tracking-[0.4em] uppercase transition-all duration-500 hover:bg-[#C5A028] hover:shadow-[0_20px_50px_rgba(212,175,55,0.4)] active:scale-95 flex items-center justify-center gap-4;
+  }
+
+  .card-glass {
+    @apply bg-white/70 backdrop-blur-3xl border border-white/20 shadow-[0_50px_100px_rgba(0,0,0,0.08)] rounded-[60px] p-20;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #FCFBF7; }
+::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+
+/* Ultra-Luxury Animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float {
+  animation: float 10s ease-in-out infinite;
+}
+
+.paper-texture {
+  background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
+}
+
+/* --- REALISTIC 3D ENVELOPE STYLES --- */
+.envelope-wrapper {
+  perspective: 2000px;
+  @apply relative w-[280px] md:w-[540px] h-[200px] md:h-[400px] mx-auto;
+  transform: scale(var(--envelope-scale, 1));
+}
+
+@media (max-width: 768px) {
+  .envelope-wrapper {
+    --envelope-scale: 0.85;
+  }
+}
+
+.envelope-back {
+  @apply absolute inset-0 bg-[#E8E4D8] rounded-xl shadow-inner z-0;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.envelope-fold-left {
+  @apply absolute top-0 left-0 w-1/2 h-full bg-[#F3F0E6] z-10 pointer-events-none;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  filter: drop-shadow(2px 0 5px rgba(0,0,0,0.05));
+  border-right: 1px solid rgba(0,0,0,0.02);
+}
+
+.envelope-fold-right {
+  @apply absolute top-0 right-0 w-1/2 h-full bg-[#F3F0E6] z-10 pointer-events-none;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  filter: drop-shadow(-2px 0 5px rgba(0,0,0,0.05));
+  border-left: 1px solid rgba(0,0,0,0.02);
+}
+
+.envelope-fold-bottom {
+  @apply absolute bottom-0 left-0 w-full h-[65%] bg-[#FBF9F2] rounded-b-xl z-20 pointer-events-none;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  background-image: linear-gradient(0deg, #FBF9F2 0%, #E8E4D8 100%);
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+}
+
+.envelope-paper {
+  @apply absolute top-6 left-[4%] w-[92%] h-[88%] bg-white rounded-lg z-[100] shadow-2xl p-6 flex flex-col items-center justify-center text-center opacity-0 pointer-events-auto;
+}
+
+.envelope-flap-top {
+  @apply absolute top-0 left-0 w-full h-[65%] bg-[#F3F0E6] z-30 pointer-events-none;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  backface-visibility: hidden;
+  filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15));
+  background-image: linear-gradient(180deg, #F3F0E6 0%, #E8E4D8 100%);
+}
+
+.wax-seal {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-[#B22222] z-40 flex items-center justify-center cursor-pointer pointer-events-none;
+  border-radius: 48% 52% 55% 45% / 45% 55% 45% 55%;
+  background-image: radial-gradient(circle at 35% 35%, #D44242 0%, #8B0000 100%);
+  box-shadow: 
+    0 8px 20px rgba(0,0,0,0.4),
+    inset 0 -4px 10px rgba(0,0,0,0.4),
+    inset 0 4px 10px rgba(255,255,255,0.2);
+  border: 2px solid #5C0000;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes scroll-move {
+  0% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(20px); opacity: 0; }
+}
+
+.scroll-icon-move {
+  animation: scroll-move 2s infinite;
+}
+
+/* Typography Fixes */
+.text-balance-fix {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.bca-number {
+  @apply text-3xl md:text-5xl font-bold tracking-[-0.05em] text-[#1A1A1A] leading-none;
+  font-feature-settings: "tnum" on, "lnum" on;
+}
+
+/* Masonry Layout */
+.masonry-grid {
+  column-count: 2;
+  column-gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .masonry-grid { column-count: 3; }
+}
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
+
+/* Music Visualizer */
+.visualizer-bar {
+  @apply w-1 bg-[#D4AF37] rounded-full;
+  animation: dance 1s ease-in-out infinite;
+}
+@keyframes dance {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+
+.text-gold-gradient {
+  background: linear-gradient(to right, #D4AF37, #FBF5E6, #D4AF37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FCFBF7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 10px;
+}
+
+/* Paper Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://www.transparenttextures.com/patterns/handmade-paper.png');
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 100;
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Izzet & Kezia</title>
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400&family=Birthstone&display=swap" rel="stylesheet">
+    <!-- Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="luxury-theme">
+    <!-- Overlay / Opening Envelope -->
+    <div id="envelope-overlay" class="envelope-overlay">
+        <div class="envelope-content" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="floral-frame"><img src="/static/floral.png" class="floral-decor top"></div>
+            <p class="opening-text">The Wedding of</p>
+            <h1 class="couple-names-opening">Izzet & Kezia</h1>
+            <div class="recipient-box">
+                <p>Kepada Bapak/Ibu/Saudara/i:</p>
+                <h2 id="guest-receiver-name">Tamu Undangan</h2>
+            </div>
+            <button class="btn-open" onclick="openInvitation()">
+                <i data-lucide="mail-open"></i> Buka Undangan
+            </button>
+            <div class="floral-frame"><img src="/static/floral.png" class="floral-decor bottom"></div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bgm" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    <div id="music-control" class="music-control hidden" onclick="toggleMusic()">
+        <div class="music-icon rotate"><i data-lucide="music"></i></div>
+    </div>
+
+    <main id="main-content" class="invitation-main hidden">
+        <!-- Hero Section -->
+        <section class="hero-premium">
+            <div class="hero-bg" style="background-image: url('/static/hero.png');"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-inner container">
+                <p data-aos="fade-down" data-aos-duration="1000">Tuhan Membuat Segala Sesuatunya Indah Pada Waktunya</p>
+                <h2 class="couple-names-hero" data-aos="zoom-in" data-aos-delay="500">Izzet & Kezia</h2>
+                <p class="wedding-date-header" data-aos="fade-up" data-aos-delay="1000">SABTU, 30 MEI 2026</p>
+                <div class="scroll-indicator"><i data-lucide="chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- Intro -->
+        <section class="section-intro container">
+            <div class="floral-accent scroll-reveal" data-aos="fade-up">
+                <p class="arabic-quote">“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri...”</p>
+                <span class="quote-ref">(QS. Ar-Rum: 21)</span>
+            </div>
+        </section>
+
+        <!-- Ceremony Details -->
+        <section class="section-events container">
+            <h2 class="section-title-premium" data-aos="fade-down">Save The Date</h2>
+            <div class="events-grid">
+                <div class="event-card-premium" data-aos="fade-right">
+                    <div class="event-icon"><i data-lucide="church"></i></div>
+                    <h3>Pemberkatan Nikah</h3>
+                    <div class="line"></div>
+                    <p class="event-time">09.00 - 11.00 WIB</p>
+                    <p class="event-venue">Gereja Katedral Jakarta</p>
+                    <p class="event-address">Jl. Katedral No.7B, Jakarta Pusat</p>
+                    <a href="#" class="btn-outline">Google Maps</a>
+                </div>
+                <div class="event-card-premium" data-aos="fade-left">
+                    <div class="event-icon"><i data-lucide="utensils"></i></div>
+                    <h3>Resepsi</h3>
+                    <div class="line"></div>
+                    <p class="event-time">13.00 - 15.00 WIB</p>
+                    <p class="event-venue">Grand Ballroom Hilton</p>
+                    <p class="event-address">Jakarta Pusat</p>
+                    <a href="#" class="btn-outline">Google Maps</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-Time Chat (Guestbook) -->
+        <section class="section-guestbook container">
+            <h2 class="section-title-premium" data-aos="fade-up">Ucapan & Doa Restu</h2>
+            <div class="guestbook-container scroll-reveal" data-aos="zoom-in">
+                <div class="chat-header-luxury">
+                    <span id="online-count">0</span> Orang sedang online
+                </div>
+                <div id="messages-container" class="msg-box-luxury">
+                    <!-- Messages from server -->
+                </div>
+                <div class="chat-footer-luxury">
+                    <div id="join-section" class="join-area">
+                        <input type="text" id="guest-name" placeholder="Siapa namamu?" class="input-luxury">
+                        <button onclick="joinChat()" class="btn-luxury">Join</button>
+                    </div>
+                    <div id="msg-section" class="msg-area hidden">
+                        <input type="text" id="chat-input" placeholder="Tulis ucapan selamat..." class="input-luxury">
+                        <button onclick="sendMessage()" class="btn-send"><i data-lucide="send"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP -->
+        <section class="section-rsvp container">
+            <h2 class="section-title-premium" data-aos="fade-up">Konfirmasi Kehadiran</h2>
+            <div class="rsvp-card-premium" data-aos="flip-up">
+                <form id="rsvp-form" onsubmit="submitRSVP(event)">
+                    <div class="input-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="rsvp-name" placeholder="Contoh: Rendi Pangalila" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Jumlah Kehadiran</label>
+                        <select id="rsvp-quantity">
+                            <option value="1">1 Person</option>
+                            <option value="2">2 Persons</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Ucapan / Doa</label>
+                        <textarea id="rsvp-note" placeholder="Tuliskan sesuatu..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit-premium">Kirim Konfirmasi</button>
+                </form>
+            </div>
+        </section>
+
+        <footer class="footer-luxury">
+            <p>Made with Love for Izzet & Kezia</p>
+            <p class="copyright">&copy; 2026. All Rights Reserved.</p>
+        </footer>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+        AOS.init();
+        lucide.createIcons();
+    </script>
+</body>
+</html>
