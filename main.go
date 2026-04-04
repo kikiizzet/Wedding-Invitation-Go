@@ -53,14 +53,27 @@ func main() {
 
 	// Static files
 	r.Static("/static", "./static")
-	r.Static("/assets", "./frontend/dist/assets") // For production build
-	r.LoadHTMLGlob("static/*.html")
+	
+	// Serve React Production Build
+	if _, err := os.Stat("./frontend/dist"); err == nil {
+		r.Static("/assets", "./frontend/dist/assets")
+		// Serve specific assets from public folder that are now in dist
+		r.StaticFile("/music.mp3", "./frontend/dist/music.mp3")
+		r.StaticFile("/zetka.png", "./frontend/dist/zetka.png")
+		r.StaticFile("/qris.png", "./frontend/dist/qris.png")
+	}
 
 	// Routes
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{
-			"title": "The Wedding of Izzet & Kezia",
-		})
+		// Try to serve React build first, fallback to static if not found (for local dev)
+		if _, err := os.Stat("./frontend/dist/index.html"); err == nil {
+			c.File("./frontend/dist/index.html")
+		} else {
+			r.LoadHTMLGlob("static/*.html")
+			c.HTML(http.StatusOK, "index.html", gin.H{
+				"title": "The Wedding of Izzet & Kezia",
+			})
+		}
 	})
 
 	r.GET("/ws", func(c *gin.Context) {
