@@ -34,11 +34,11 @@ COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
 # Copy the static folder from source (for original assets/templates)
 COPY static ./static
 
-# Expose the API port
-EXPOSE 8080
+# Expose the API port (Hugging Face standard)
+EXPOSE 7860
 
 # Environment variables
-ENV PORT=8080
+ENV PORT=7860
 ENV GIN_MODE=release
 
 # Start the application
